@@ -1,4 +1,4 @@
-package com.springall.auth.config;
+package com.springall.auth.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

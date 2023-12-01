@@ -2,3 +2,15 @@ server:
   port: 8080
   servlet:
     context-path: /auth
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.159.128:3306/spring_all
+    username: root
+    password: yxt123
+    druid:
+      max-active: 20
+
+
+
