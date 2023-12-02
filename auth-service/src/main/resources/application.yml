@@ -6,7 +6,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.159.128:3306/all
+    url: jdbc:mysql://192.168.110.128:3306/all
     username: root
     password: yxt123
     druid:
