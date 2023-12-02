@@ -15,6 +15,11 @@
     <description>authentication and authority</description>
     <properties>
         <java.version>17</java.version>
+        <mysql-connector-java.version>8.0.33</mysql-connector-java.version>
+        <druid-spring-boot-starter.version>1.2.16</druid-spring-boot-starter.version>
+        <fastjson2.version>2.0.42</fastjson2.version>
+        <jakarta.validation-api.version>3.0.2</jakarta.validation-api.version>
+        <hibernate-validator.version>8.0.0.Final</hibernate-validator.version>
     </properties>
     <dependencies>
         <dependency>
@@ -37,12 +42,29 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.33</version>
+            <version>${mysql-connector-java.version}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.2.16</version>
+            <version>${druid-spring-boot-starter.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+            <version>${fastjson2.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>${jakarta.validation-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator.version}</version>
         </dependency>
 
         <dependency>

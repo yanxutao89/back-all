@@ -1,4 +1,4 @@
-package com.springall.auth.entities;
+package com.springall.auth.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +13,6 @@ import java.util.Date;
 @Entity(name = "auth_user")
 public class AuthUserEO {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String username;
     private String password;
@@ -68,4 +67,5 @@ public class AuthUserEO {
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
+
 }

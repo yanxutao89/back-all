@@ -6,11 +6,21 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.159.128:3306/spring_all
+    url: jdbc:mysql://192.168.159.128:3306/all
     username: root
     password: yxt123
     druid:
+      driver-class-name: ${spring.datasource.driver-class-name}
+      url: ${spring.datasource.url}
+      username: ${spring.datasource.username}
+      password: ${spring.datasource.password}
       max-active: 20
+      filter:
+        stat:
+          enabled: true
+          db-type: mysql
+          slow-sql-millis: 1000
+          log-slow-sql: true
 
 
 
