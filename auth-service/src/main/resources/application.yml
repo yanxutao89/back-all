@@ -4,6 +4,8 @@ server:
     context-path: /auth
 
 spring:
+  application:
+    name: auth-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.110.128:3306/all
@@ -21,6 +23,11 @@ spring:
           db-type: mysql
           slow-sql-millis: 1000
           log-slow-sql: true
+
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    web: debug
 
 
 
