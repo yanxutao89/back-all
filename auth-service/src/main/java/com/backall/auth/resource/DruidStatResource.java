@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/druid")
-public class DruidStatController {
+public class DruidStatResource {
 
     @GetMapping("/stat")
     public Object druidStat(){

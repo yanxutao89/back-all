@@ -1,4 +1,4 @@
-package com.backall.auth.resource;
+package com.backall.auth.resource.global;
 
 import com.backall.auth.infrastructure.utility.MessageUtil;
 import com.backall.auth.infrastructure.utility.Result;
@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
-import org.springframework.validation.beanvalidation.SpringValidatorAdapter;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -22,7 +21,7 @@ import java.util.stream.Collectors;
  * @Date: 2021/12/19 14:39
  */
 @RestControllerAdvice
-public class GlobalExceptionController {
+public class GlobalExceptionProcessor {
 
     @Autowired
     private MessageUtil messageUtil;
