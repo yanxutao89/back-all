@@ -1,4 +1,4 @@
-package com.backall.auth.resource.global;
+package com.backall.auth.resource.aspect;
 
 import com.backall.auth.infrastructure.utility.MessageUtil;
 import com.backall.auth.infrastructure.utility.Result;
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
  * @Date: 2021/12/19 14:39
  */
 @RestControllerAdvice
-public class GlobalExceptionProcessor {
+public class ResourceExceptionAspect {
 
     @Autowired
     private MessageUtil messageUtil;
@@ -34,16 +34,24 @@ public class GlobalExceptionProcessor {
         return Result.failure(msg);
     }
 
+    @ExceptionHandler(Exception.class)
+    public Result handleBindException(HttpServletRequest request, HttpServletResponse response, Exception exception) {
+        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        return Result.failure(exception.getMessage());
+    }
+
     private String toMsg(ObjectError error) {
         String key = error.getObjectName();
         if (error instanceof FieldError fieldError) {
             key = fieldError.getField();
         }
         Object[] arguments = error.getArguments();
+        Object[] actual;
         if (arguments == null) {
-            arguments = new Object[]{};
+           actual = new Object[]{};
+        } else {
+            actual = Arrays.stream(Arrays.copyOfRange(arguments, 1, arguments.length)).sorted().toArray();
         }
-        Object[] actual = Arrays.stream(Arrays.copyOfRange(arguments, 1, arguments.length)).sorted().toArray();
         return key + ":" + messageUtil.getMessage(error.getDefaultMessage(), actual);
     }
 

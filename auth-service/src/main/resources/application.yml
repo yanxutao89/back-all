@@ -7,6 +7,7 @@ spring:
   application:
     name: auth-service
   datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.110.128:3306/all
     username: root

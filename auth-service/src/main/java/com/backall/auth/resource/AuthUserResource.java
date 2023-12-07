@@ -1,6 +1,6 @@
 package com.backall.auth.resource;
 
-import com.backall.auth.application.AuthUserService;
+import com.backall.auth.application.AuthUserApplicationService;
 import com.backall.auth.application.dto.AuthUserDTO;
 import com.backall.auth.infrastructure.utility.Result;
 import com.backall.auth.infrastructure.validation.Create;
@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthUserResource {
 
     @Autowired
-    private AuthUserService authUserService;
+    private AuthUserApplicationService authUserApplicationService;
 
     @PostMapping
     public Result createUser(@RequestBody @Validated(Create.class) AuthUserDTO authUserDTO) {
-        return authUserService.createUser(authUserDTO);
+        return authUserApplicationService.createUser(authUserDTO);
     }
 
 }

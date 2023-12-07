@@ -20,7 +20,7 @@ public class DruidStatResourceTests {
     @Test
     @WithMockUser
     void test() throws Exception {
-        this.mockMvc.perform(get("/druid/stat")).andExpect(status().isOk());
+        mockMvc.perform(get("/druid/stat")).andExpect(status().isOk());
     }
 
 }

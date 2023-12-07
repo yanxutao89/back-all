@@ -155,7 +155,7 @@
         </root>
     </springProfile>
 
-    <springProfile name="pro">
+    <springProfile name="prod">
         <root level="INFO">
             <appender-ref ref="DEBUG_FILE"/>
             <appender-ref ref="INFO_FILE"/>

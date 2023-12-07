@@ -1,4 +1,4 @@
-package com.backall.auth.infrastructure.config;
+package com.backall.auth.domain.security;
 
 import jakarta.servlet.DispatcherType;
 import org.springframework.beans.factory.annotation.Autowired;

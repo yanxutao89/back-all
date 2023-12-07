@@ -1,4 +1,4 @@
-package com.backall.auth.infrastructure.config;
+package com.backall.auth.domain.security;
 
 import com.backall.auth.domain.user.AuthUserEO;
 import org.springframework.security.core.GrantedAuthority;

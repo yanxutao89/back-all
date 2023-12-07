@@ -19,16 +19,16 @@ public class LoginResourceTests {
 
     @Test
     void loginWhenUnAuthenticatedThenRedirect() throws Exception {
-        this.mockMvc.perform(get("/login"))
+        mockMvc.perform(get("/login"))
                 .andExpect(status().isOk());
     }
 
     @Test
     @WithMockUser
     void loginSuccessAndFailureWhenAuthenticatedThenRedirect() throws Exception {
-        this.mockMvc.perform(get("/login/success"))
+        mockMvc.perform(get("/login/success"))
                 .andExpect(status().isOk());
-        this.mockMvc.perform(get("/login/failure"))
+        mockMvc.perform(get("/login/failure"))
                 .andExpect(status().isOk());
     }
 

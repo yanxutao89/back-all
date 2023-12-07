@@ -1,4 +1,4 @@
-package com.backall.auth.infrastructure.config;
+package com.backall.auth.domain.security;
 
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
