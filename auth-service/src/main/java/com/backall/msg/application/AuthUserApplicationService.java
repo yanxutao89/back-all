@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class AuthUserApplicationService {
@@ -30,6 +31,12 @@ public class AuthUserApplicationService {
         authUserEO.setStatus(AuthUserStatusEnum.NORMAL.code());
         AuthUserEO save = authUserRepository.save(authUserEO);
         return save != null ? Result.success(save, "操作成功") : Result.failure("操作失败");
+    }
+
+    public Result deleteUser(AuthUserDTO authUserDTO) {
+        Optional<AuthUserEO> authUserEO = authUserRepository.findById(authUserDTO.getId());
+        authUserEO.ifPresent(eo -> authUserRepository.delete(eo));
+        return Result.success(null, "操作成功");
     }
 
 }
