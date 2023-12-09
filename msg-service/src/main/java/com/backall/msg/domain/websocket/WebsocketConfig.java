@@ -13,12 +13,13 @@ public class WebsocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/msg/websocket");
+        registry.addEndpoint("/msg-websocket")
+                .setAllowedOrigins("http://localhost:8081", "https://wstool.js.org/");
     }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.setApplicationDestinationPrefixes("/stomp");
+        registry.setApplicationDestinationPrefixes("/msg");
         registry.enableSimpleBroker("/topic", "/queue");
     }
 

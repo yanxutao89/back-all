@@ -1,5 +1,5 @@
 const stompClient = new StompJs.Client({
-    brokerURL: 'ws://localhost:8081/msg/websocket'
+    brokerURL: 'ws://localhost:8081/msg-websocket'
 });
 
 stompClient.onConnect = (frame) => {
@@ -42,7 +42,7 @@ function disconnect() {
 
 function sendName() {
     stompClient.publish({
-        destination: "/stomp/hello",
+        destination: "/msg/hello",
         body: JSON.stringify({'name': $("#name").val()})
     });
 }
