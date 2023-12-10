@@ -2,9 +2,11 @@ package com.backall.msg.domain.security;
 
 import com.backall.msg.domain.user.AuthUserEO;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 
 public class AuthUserDetails implements UserDetails {
 
@@ -16,7 +18,7 @@ public class AuthUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return List.of(new SimpleGrantedAuthority("READ"));
     }
 
     @Override

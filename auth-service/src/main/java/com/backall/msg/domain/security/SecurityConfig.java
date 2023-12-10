@@ -2,10 +2,12 @@ package com.backall.msg.domain.security;
 
 import jakarta.servlet.DispatcherType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
@@ -21,9 +23,11 @@ public class SecurityConfig {
 
     @Autowired
     private UserDetailsService userDetailsService;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    @Qualifier("usernamePasswordAuthenticationProvider")
+    private AuthenticationProvider usernamePasswordAuthenticationProvider;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -46,11 +50,7 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationManager authenticationManager() {
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService);
-        authenticationProvider.setPasswordEncoder(passwordEncoder);
-
-        ProviderManager providerManager = new ProviderManager(authenticationProvider);
+        ProviderManager providerManager = new ProviderManager(usernamePasswordAuthenticationProvider);
         providerManager.setEraseCredentialsAfterAuthentication(false);
         return providerManager;
     }
