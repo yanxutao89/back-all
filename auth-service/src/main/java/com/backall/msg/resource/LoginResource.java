@@ -16,12 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class LoginResource {
 
     @ResponseBody
-    @PostMapping("")
-    public Result login() {
-        return Result.success(null, "login");
-    }
-
-    @ResponseBody
     @PostMapping("/success")
     public Result loginSuccess() {
         return Result.success(null, "login success");
@@ -30,7 +24,7 @@ public class LoginResource {
     @ResponseBody
     @PostMapping("/failure")
     public Result loginFailure() {
-        return Result.success(null, "login failure");
+        return Result.failure("login failure");
     }
 
 }

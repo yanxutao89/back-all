@@ -25,19 +25,15 @@ public class SecurityConfig {
     private UserDetailsService userDetailsService;
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @Autowired
-    @Qualifier("usernamePasswordAuthenticationProvider")
-    private AuthenticationProvider usernamePasswordAuthenticationProvider;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((authorize) -> authorize
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.authorizeHttpRequests(authorize -> authorize
                         .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
-                        .requestMatchers(HttpMethod.GET, "/index", "/error").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/user").permitAll()
-                        .requestMatchers(HttpMethod.DELETE, "/user").permitAll()
+                        .requestMatchers("/index", "/login", "/error", "/user").permitAll()
                         .anyRequest().authenticated()
-                ).httpBasic(Customizer.withDefaults())
+                ).httpBasic(http -> http
+                        .realmName("BACK"))
                 .formLogin(form -> form
                         .loginPage("/index")
                         .loginProcessingUrl("/login")
@@ -45,14 +41,22 @@ public class SecurityConfig {
                         .failureForwardUrl("/login/failure"))
                 .csrf().disable()
                 .cors().disable();
-        return http.build();
+        return httpSecurity.build();
     }
 
     @Bean
     public AuthenticationManager authenticationManager() {
-        ProviderManager providerManager = new ProviderManager(usernamePasswordAuthenticationProvider);
+        ProviderManager providerManager = new ProviderManager(daoAuthenticationProvider());
         providerManager.setEraseCredentialsAfterAuthentication(false);
         return providerManager;
+    }
+
+    @Bean
+    public AuthenticationProvider daoAuthenticationProvider() {
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
+        return daoAuthenticationProvider;
     }
 
 }
